@@ -17,20 +17,6 @@ app.get("/product", async (req, res) => {
   }
 });
 
-app.get("/product/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const idProducts = await Product.findOne({
-      where: {
-        id: id,
-      },
-    });
-    res.status(200).json(idProducts);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
 app.post("/product", async (req, res) => {
   const {
     product_name,
@@ -74,6 +60,20 @@ app.post("/product", async (req, res) => {
     } catch (error) {
       console.log(error.message);
     }
+  }
+});
+
+app.get("/product/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const idProducts = await Product.findOne({
+      where: {
+        id: id,
+      },
+    });
+    res.status(200).json(idProducts);
+  } catch (error) {
+    console.log(error.message);
   }
 });
 
